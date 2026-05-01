@@ -21,6 +21,7 @@
 --bg:#FAFAF7;--card:#FFF;--surface:#F5F3EE;--ink:#2C2C2A;--sub:#6B6B65;--hint:#A8A8A0;
 --line:rgba(0,0,0,.07);--mint:#5DCAA5;--mint-bg:#E1F5EE;--mint-dark:#085041;--mint-mid:#0F6E56;
 --amber:#D4980B;--amber-bg:#FDF6E3;--amber-dark:#633806;--coral:#D85A30;--coral-bg:#FEF0EB;--coral-dark:#712B13;
+--mint-mid-invert:#F091A9;--cta-btn-height:46px;
 --radius:12px;--radius-sm:8px;--max-w:820px;
 --font-body:'Pretendard',-apple-system,sans-serif;--font-display:'Nanum Myeongjo',serif;
 --shadow-hover:0 8px 24px rgba(0,0,0,.08);
@@ -56,7 +57,7 @@ nav a:hover{color:var(--ink)}
 .age-input{width:100px;padding:12px 16px;font-size:24px;font-weight:700;text-align:center;border:1px solid var(--line);border-radius:var(--radius-sm);outline:none;font-family:var(--font-display);transition:border-color .2s}
 .age-input:focus{border-color:var(--mint)}
 .age-unit{font-size:16px;color:var(--sub)}
-.age-btn{display:block;width:100%;margin-top:16px;padding:14px;background:var(--mint);color:#fff;font-size:15px;font-weight:600;border-radius:var(--radius-sm);transition:background .15s,box-shadow .2s,transform .15s}
+.age-btn{display:block;width:100%;height:var(--cta-btn-height);margin-top:16px;padding:0 16px;background:var(--mint);color:#fff;font-size:15px;font-weight:600;border-radius:var(--radius-sm);transition:background .15s,box-shadow .2s,transform .15s;line-height:var(--cta-btn-height);}
 .age-btn:hover{background:var(--mint-mid);box-shadow:0 4px 16px rgba(93,202,165,.35);transform:translateY(-1px)}
 .age-result{margin-top:14px;font-size:13px;color:var(--mint-dark);text-align:center;min-height:20px}
 
@@ -103,10 +104,31 @@ nav a:hover{color:var(--ink)}
 .chk h4{font-size:13px;font-weight:700;margin-bottom:8px}
 .ci{display:flex;align-items:center;gap:9px;padding:4px 0;font-size:13px;color:var(--sub)}
 .ci input{width:16px;height:16px;accent-color:var(--mint);cursor:pointer}
-.card-ft{padding:14px 22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.card-ft a{font-size:13px;font-weight:600;color:var(--mint-mid);transition:color .15s;padding:4px 8px;border-radius:var(--radius-sm);display:inline-block}
-.card-ft a:hover{color:var(--mint-dark);background:var(--mint-bg)}
-.card-ft .src{font-size:11px;color:var(--hint)}
+.card{position:relative;}
+.card-ft{padding:18px 22px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;min-height:72px}
+.detail-chip{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;font-size:15px;font-weight:800;border:1px solid rgba(15,110,86,0.25);border-radius:8px;background:var(--mint-mid);color:#fff;text-decoration:none;box-shadow:0 10px 22px rgba(15,110,86,0.16);transition:transform 0.2s ease-in-out,box-shadow .2s,background .2s;line-height:1.2;cursor:pointer}
+.detail-chip:hover{background:var(--mint);transform:translateY(-1px);box-shadow:0 12px 26px rgba(93,202,165,0.2)}
+.card-ft a:not(.detail-chip){font-size:13px;font-weight:600;color:var(--mint-mid);transition:color .15s;padding:4px 8px;border-radius:var(--radius-sm);display:inline-block}
+.card-ft a:not(.detail-chip):hover{color:var(--mint-dark);background:var(--mint-bg)}
+.detail-panel{display:none;margin:0 22px 16px;padding:18px 20px;background:rgba(245,253,249,.95);border:1px solid rgba(93,202,165,.16);border-radius:14px;box-shadow:inset 0 1px 1px rgba(255,255,255,.6)}
+.detail-panel.open{display:block}
+.detail-panel h4{font-size:16px;font-weight:800;margin-bottom:10px;color:var(--ink)}
+.detail-panel p{font-size:14px;color:var(--sub);line-height:1.8;margin-bottom:14px}
+.detail-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.detail-metric{background:rgba(93,202,165,.1);padding:12px;border-radius:12px}
+.detail-metric strong{display:block;font-size:14px;color:var(--mint-dark);margin-bottom:4px}
+.detail-metric span{font-size:13px;color:var(--sub)}
+.detail-tips{margin-bottom:18px}
+.detail-tips h5{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.detail-tips ul{list-style:none;padding:0}
+.detail-tips li{font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:6px;padding-left:16px;position:relative}
+.detail-tips li::before{content:'✓';position:absolute;left:0;color:var(--mint);font-weight:600}
+.detail-action{display:flex;justify-content:flex-start;gap:12px;flex-wrap:wrap}
+.apply-now{display:inline-flex;align-items:center;justify-content:center;height:var(--cta-btn-height);padding:0 24px;font-size:15px;font-weight:800;border:1px solid rgba(15,110,86,0.25);border-radius:12px;background:var(--mint);color:#fff;text-decoration:none;box-shadow:0 10px 24px rgba(15,110,86,0.18);transition:transform 0.2s ease-in-out,box-shadow .2s,background .2s;line-height:var(--cta-btn-height)}
+.apply-now:hover{background:var(--mint-dark);transform:translateY(-1px);box-shadow:0 14px 28px rgba(15,110,86,0.22)}
+.detail-close{border:none;background:transparent;color:var(--mint-dark);font-size:13px;font-weight:700;cursor:pointer;margin-top:10px;padding:0}
+.card-ft a:not(.detail-btn):hover{color:var(--mint-dark);background:var(--mint-bg)}
+.card-ft .src{position:absolute;right:22px;bottom:14px;font-size:11px;color:var(--hint);margin-left:0}
 
 .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:640px){.tool-grid{grid-template-columns:1fr}}
@@ -156,17 +178,11 @@ footer{padding:36px 0;border-top:1px solid var(--line);text-align:center}
 .f-links a:hover{color:var(--ink)}
 .f-copy{font-size:11px;color:var(--hint)}
 
-.apply-sticky{position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(93,202,165,.6);backdrop-filter:blur(12px);padding:12px 20px;text-align:center;border-top:1px solid var(--line);transition:background .2s,box-shadow .2s}
-.apply-sticky:hover{background:rgba(93,202,165,.95);box-shadow:0 -8px 24px rgba(93,202,165,.25)}
-.apply-sticky:active{background:var(--mint);transform:scale(.98)}
-.apply-sticky-btn{padding:12px 32px;background:transparent;color:#fff;font-size:15px;font-weight:600;border-radius:var(--radius-sm);transition:all .2s;cursor:pointer;font-family:var(--font-body)}
-.apply-sticky-btn:hover{text-shadow:0 2px 8px rgba(0,0,0,.15)}
-
 .card.highlight{animation:pulseHighlight .6s ease-out;}
 @keyframes pulseHighlight{0%{box-shadow:0 0 0 8px rgba(93,202,165,.4),var(--shadow-hover);transform:scale(1.02);}100%{box-shadow:0 0 0 0 rgba(93,202,165,0);transform:scale(1);}}
 
 .hidden{display:none !important}
-@media(max-width:600px){nav{gap:14px;font-size:12px}.hero{padding:36px 0 28px}.meta{grid-template-columns:80px 1fr}.apply-sticky{padding:10px 16px;bottom:safe-area-inset-bottom}.apply-sticky-btn{padding:10px 24px;font-size:14px}}
+@media(max-width:600px){nav{gap:14px;font-size:12px}.hero{padding:36px 0 28px}.meta{grid-template-columns:80px 1fr}}
 </style>
 </head>
 <body>
@@ -272,13 +288,9 @@ footer{padding:36px 0;border-top:1px solid var(--line);text-align:center}
 <div class="f-copy">&copy; 2026 숨은지원금. All rights reserved.</div>
 </div></footer>
 
-<div class="apply-sticky">
-<button class="apply-sticky-btn" onclick="handleApply()">신청하기</button>
-</div>
-
 <script>
 var DATA=[
-{id:"S-001",t:"기초연금",cat:"생활비",age:65,desc:"만 65세 이상 부모님이라면 매달 받으실 수 있어요. 소득이 많지 않다면 받을 가능성이 높습니다.",amt:"최대 32만원",unit:"/ 한 달",who:"만 65세 이상 어르신",where:"주민센터 또는 복지로",when:"상시 (빠를수록 좋아요)",steps:["<span class='hl'>신분증, 통장, 가족관계증명서</span> 챙기기","부모님과 함께 <strong>주민센터</strong>에 가기","신청서 작성하기 (약 30분이면 끝나요)","한 달 뒤 결과 통보 → 다음 달부터 입금"],say:'"엄마, 매달 32만 원 받을 수 있는 거 신청 안 하셨죠? 이번 주말에 같이 주민센터 가요."',docs:["부모님 신분증","부모님 통장 사본","가족관계증명서","자녀 대리 시 위임장+신분증"],src:"보건복지부 · bokjiro.go.kr",url:"https://www.bokjiro.go.kr",badge:["시니어","인기"],new:true},
+{id:"S-001",t:"기초연금",cat:"생활비",age:65,desc:"만 65세 이상 부모님이라면 매달 받으실 수 있어요. 소득이 많지 않다면 받을 가능성이 높습니다.",amt:"최대 32만원",unit:"/ 한 달",who:"만 65세 이상 어르신",where:"주민센터 또는 복지로",when:"상시 (빠를수록 좋아요)",steps:["<span class='hl'>신분증, 통장, 가족관계증명서</span> 챙기기","부모님과 함께 <strong>주민센터</strong>에 가기","신청서 작성하기 (약 30분이면 끝나요)","한 달 뒤 결과 통보 → 다음 달부터 입금"],say:'"엄마, 매달 32만 원 받을 수 있는 거 신청 안 하셨죠? 이번 주말에 같이 주민센터 가요."',docs:["부모님 신분증","부모님 통장 사본","가족관계증명서","자녀 대리 시 위임장+신분증"],src:"보건복지부 · bokjiro.go.kr",url:"https://www.bokjiro.go.kr/ssis-tbu/twddb/aB41aB41aB41aB41R.do",badge:["시니어","인기"],new:true},
 {id:"S-002",t:"K-패스 교통비 환급",cat:"교통",age:65,desc:"대중교통을 자주 이용하시는 부모님이라면 이용 금액의 30%를 돌려받으실 수 있어요.",amt:"이용액의 30%",unit:"환급",who:"만 65세 이상 (소득 무관)",where:"K-패스 앱 또는 카드사",when:"상시",steps:["부모님 휴대폰에 <span class='hl'>K-패스 앱</span> 설치해 드리기","K-패스 카드 신청 (KB·신한·BC 등)","카드 받으면 버스·지하철 탈 때 사용","다음 달에 이용 금액의 30% 자동 환급"],say:'"아빠, 버스 탈 때 쓰는 카드 바꾸면 매달 교통비 30% 돌려받을 수 있대요."',docs:["부모님 명의 휴대폰","부모님 통장","부모님 신분증"],src:"국토교통부 · korea-pass.kr",url:"https://korea-pass.kr",badge:["시니어","2026인상"],new:true},
 {id:"S-003",t:"노인 의료비 정액제",cat:"의료",age:65,desc:"동네 병원 진료비가 1만5천 원 이하면 본인부담금이 1,500원만 부과돼요. 별도 신청 없이 자동 적용됩니다.",amt:"외래 1,500원",unit:"정액",who:"만 65세 이상 (의원급 외래)",where:"동네 병원 (자동 적용)",when:"상시",steps:["별도 신청 필요 없어요","동네 병원(의원급) 방문 시 <span class='hl'>신분증만</span> 가져가기","접수할 때 나이 확인되면 자동 적용","총 진료비 1만5천 원 이하면 1,500원만 내면 돼요"],say:'"엄마, 동네 병원 가실 때 신분증 꼭 가져가세요. 진료비가 1,500원만 나와요."',docs:["부모님 신분증"],src:"국민건강보험공단 · nhis.or.kr",url:"https://www.nhis.or.kr",badge:["시니어","자동적용"],new:false},
 {id:"S-004",t:"노인일자리 공익활동",cat:"일자리",age:65,desc:"하루 3시간, 주민센터나 학교에서 봉사하면 매달 27만 원을 받으실 수 있어요.",amt:"월 27만원",unit:"/ 한 달",who:"만 65세 이상",where:"주민센터, 시니어클럽",when:"매년 1~2월 모집",steps:["거주지 <span class='hl'>주민센터 또는 시니어클럽</span>에 문의","부모님과 함께 방문해서 신청서 작성","면접 후 배치 (등하교 도우미, 환경 정화 등)","매달 활동비 통장 입금"],say:'"아빠, 동네에서 하루 3시간 봉사하면 매달 27만 원 받는 프로그램 있대요."',docs:["부모님 신분증","통장 사본"],src:"한국노인인력개발원 · kordi.or.kr",url:"https://www.kordi.or.kr",badge:["시니어","일자리"],new:false},
@@ -288,24 +300,24 @@ var DATA=[
 {id:"S-008",t:"독감·폐렴 무료 예방접종",cat:"의료",age:65,desc:"65세 이상이면 매년 독감 접종, 1회 폐렴구균 접종을 무료로 받으실 수 있어요.",amt:"무료",unit:"",who:"만 65세 이상",where:"가까운 의원·보건소",when:"독감: 매년 10~12월 / 폐렴: 상시",steps:["가까운 의원 또는 보건소 방문","<span class='hl'>신분증</span>만 가져가면 돼요","접종 후 30분 관찰","독감은 매년, 폐렴은 평생 1회"],say:'"엄마, 독감 주사 무료로 맞을 수 있어요. 올가을에 같이 보건소 가요."',docs:["부모님 신분증"],src:"질병관리청",url:"https://nip.kdca.go.kr",badge:["시니어","무료"],new:false},
 {id:"S-009",t:"노인 건강검진",cat:"의료",age:66,desc:"66세 이상이면 2년마다 무료 건강검진을 받으실 수 있어요. 암검진도 포함돼요.",amt:"무료",unit:"2년마다",who:"만 66세 이상 (짝수 해 출생자)",where:"건강보험공단 지정 병원",when:"해당 연도 12월 31일까지",steps:["건강보험공단에서 <span class='hl'>검진 대상자 확인</span> (1577-1000)","지정 병원 예약","공복 상태로 방문 (아침 식사 X)","결과는 2~3주 후 우편 또는 앱"],say:'"아빠, 올해 건강검진 대상이세요. 무료니까 꼭 받으세요. 제가 병원 예약해 드릴게요."',docs:["부모님 신분증","건강보험증","검진표(공단에서 우편 발송)"],src:"국민건강보험공단",url:"https://www.nhis.or.kr",badge:["66세+","무료"],new:false},
 {id:"S-010",t:"노인장기요양보험",cat:"돌봄",age:65,desc:"일상생활을 혼자 하기 어려우신 부모님이라면, 요양보호사 방문·요양원 이용 등의 서비스를 받으실 수 있어요.",amt:"등급별 월 100~190만원",unit:"서비스",who:"만 65세 이상 또는 노인성 질환",where:"국민건강보험공단 지사",when:"상시",steps:["<span class='hl'>1577-1000</span> 전화 또는 공단 지사 방문","신청서 제출","공단 직원 방문 조사 (1~2주)","등급 판정 (1~5등급) → 결과 통보 (약 1개월)"],say:'"엄마, 거동이 불편하시면 요양보호사가 집에 와서 도와주는 서비스 있어요. 같이 알아볼까요?"',docs:["부모님 신분증","신청서(공단에서 받음)","의사 소견서(있으면)","가족관계증명서"],src:"노인장기요양보험 · longtermcare.or.kr",url:"https://www.longtermcare.or.kr",badge:["시니어","돌봄"],new:false},
-{id:"S-011",t:"노인돌봄서비스",cat:"돌봄",age:65,desc:"혼자 사시는 65세 이상 부모님이라면, 안부 확인·생활 지원 서비스를 받으실 수 있어요.",amt:"무료~일부 부담",unit:"",who:"만 65세 이상 독거 어르신",where:"주민센터",when:"상시",steps:["거주지 <span class='hl'>주민센터</span> 방문 또는 129 전화","독거 여부 확인 후 서비스 연결","안부 전화, 방문, 생활 지원 등","긴급 시 119 자동 연결 기기 설치 가능"],say:'"엄마 혼자 계실 때 걱정되는데, 안부 확인해주는 서비스 신청해 드릴게요."',docs:["부모님 신분증"],src:"보건복지부",url:"https://www.bokjiro.go.kr",badge:["독거","돌봄"],new:false},
+{id:"S-011",t:"노인돌봄서비스",cat:"돌봄",age:65,desc:"혼자 사시는 65세 이상 부모님이라면, 안부 확인·생활 지원 서비스를 받으실 수 있어요.",amt:"무료~일부 부담",unit:"",who:"만 65세 이상 독거 어르신",where:"주민센터",when:"상시",steps:["거주지 <span class='hl'>주민센터</span> 방문 또는 129 전화","독거 여부 확인 후 서비스 연결","안부 전화, 방문, 생활 지원 등","긴급 시 119 자동 연결 기기 설치 가능"],say:'"엄마 혼자 계실 때 걱정되는데, 안부 확인해주는 서비스 신청해 드릴게요."',docs:["부모님 신분증"],src:"보건복지부",url:"https://www.bokjiro.go.kr/ssis-tbu/twddb/aB41aB41aB41aB41R.do",badge:["독거","돌봄"],new:false},
 {id:"S-012",t:"치매안심센터 무료 상담",cat:"돌봄",age:60,desc:"치매가 걱정되시면 무료로 상담과 검진을 받으실 수 있어요. 전국 256개 센터에서 운영합니다.",amt:"무료",unit:"",who:"만 60세 이상 또는 치매 의심",where:"치매안심센터 (전국 256곳)",when:"상시",steps:["거주지 <span class='hl'>치매안심센터</span>에 전화 (1899-9988)","무료 상담 예약","검진 + 결과 상담","필요 시 치료 연결 + 가족 교육"],say:'"엄마가 요즘 깜빡하시는 게 걱정되면, 치매안심센터에서 무료로 상담받을 수 있어요."',docs:["부모님 신분증"],src:"중앙치매센터",url:"https://www.nid.or.kr",badge:["60세+","무료"],new:false},
 {id:"S-013",t:"주거급여",cat:"주거",age:0,desc:"소득이 적은 가구에 매달 월세를 지원해 드려요. 부모님이 월세로 사시면 확인해 보세요.",amt:"최대 월 52만원",unit:"/ 한 달",who:"중위소득 48% 이하 가구",where:"주민센터",when:"상시",steps:["거주지 <span class='hl'>주민센터</span> 방문","가구 소득·재산 조사","임대차계약서 제출","심사 후 매달 통장 입금"],say:'"엄마, 월세 사시잖아요. 주거급여 신청하면 월세 도움받을 수 있어요."',docs:["부모님 신분증","임대차계약서","통장 사본","소득 증빙"],src:"국토교통부 · myhome.go.kr",url:"https://www.myhome.go.kr",badge:["주거","저소득"],new:false},
 {id:"S-014",t:"주거환경 개선사업",cat:"주거",age:65,desc:"집이 낡아서 위험한 저소득 어르신 가구의 주거 환경을 무료로 수리해 드려요.",amt:"최대 1,580만원",unit:"수리비",who:"만 65세 이상 저소득 가구",where:"주민센터 또는 LH",when:"연중 수시",steps:["거주지 주민센터에 문의","소득·주택 상태 확인","수리 범위 결정 (도배, 싱크대, 화장실 등)","공사 진행 (무료)"],say:'"아빠, 화장실이 낡았으면 정부에서 무료로 수리해주는 사업 있어요."',docs:["부모님 신분증","주택 소유 증빙","소득 증빙"],src:"국토교통부",url:"https://www.myhome.go.kr",badge:["시니어","주거"],new:false},
-{id:"S-015",t:"긴급복지 지원",cat:"생활비",age:0,desc:"갑자기 아프거나, 실직하거나, 재난을 당했을 때 긴급으로 생활비·의료비를 지원받을 수 있어요.",amt:"생계 최대 162만원",unit:"긴급",who:"위기 상황 가구 (소득 무관)",where:"129 전화 또는 주민센터",when:"위기 발생 시 즉시",steps:["<span class='hl'>129</span> 전화 또는 주민센터 방문","위기 상황 설명","현장 확인 후 48시간 내 지원 결정","생계비, 의료비, 주거비 등 즉시 지급"],say:'"갑자기 어려운 일이 생기면 129에 전화하세요. 바로 도와줘요."',docs:["신분증","위기 상황 증빙(진단서, 해고통지 등)"],src:"보건복지부",url:"https://www.bokjiro.go.kr",badge:["긴급","전연령"],new:false},
-{id:"S-016",t:"기초생활보장 생계급여",cat:"생활비",age:0,desc:"소득이 중위소득 30% 이하인 가구에 매달 생활비를 지원해요.",amt:"최대 월 71만원",unit:"(1인 가구 기준)",who:"중위소득 30% 이하",where:"주민센터",when:"상시",steps:["거주지 주민센터 방문","소득·재산 조사 신청","약 1개월 심사","매달 통장 입금"],say:'"엄마, 소득이 적으시면 매달 생활비 도움받을 수 있어요. 같이 알아볼까요?"',docs:["신분증","소득 증빙","재산 증빙","통장 사본"],src:"보건복지부",url:"https://www.bokjiro.go.kr",badge:["저소득","생활비"],new:false},
-{id:"S-017",t:"장애인연금",cat:"생활비",age:65,desc:"중증장애가 있는 65세 이상 어르신에게 매달 최대 40만 원을 지급해요.",amt:"최대 월 40만원",unit:"/ 한 달",who:"중증장애 만 65세 이상",where:"주민센터",when:"상시",steps:["거주지 주민센터 방문","장애등록증 + 소득 확인","심사 후 결과 통보","매달 통장 입금"],say:'"장애 등록이 되어 있으시면 매달 40만 원까지 받을 수 있어요."',docs:["신분증","장애인등록증","통장 사본"],src:"보건복지부",url:"https://www.bokjiro.go.kr",badge:["장애","시니어"],new:false},
+{id:"S-015",t:"긴급복지 지원",cat:"생활비",age:0,desc:"갑자기 아프거나, 실직하거나, 재난을 당했을 때 긴급으로 생활비·의료비를 지원받을 수 있어요.",amt:"생계 최대 162만원",unit:"긴급",who:"위기 상황 가구 (소득 무관)",where:"129 전화 또는 주민센터",when:"위기 발생 시 즉시",steps:["<span class='hl'>129</span> 전화 또는 주민센터 방문","위기 상황 설명","현장 확인 후 48시간 내 지원 결정","생계비, 의료비, 주거비 등 즉시 지급"],say:'"갑자기 어려운 일이 생기면 129에 전화하세요. 바로 도와줘요."',docs:["신분증","위기 상황 증빙(진단서, 해고통지 등)"],src:"보건복지부",url:"https://www.bokjiro.go.kr/nwelbe/getWelInfoMain.do",badge:["긴급","전연령"],new:false},
+{id:"S-016",t:"기초생활보장 생계급여",cat:"생활비",age:0,desc:"소득이 중위소득 30% 이하인 가구에 매달 생활비를 지원해요.",amt:"최대 월 71만원",unit:"(1인 가구 기준)",who:"중위소득 30% 이하",where:"주민센터",when:"상시",steps:["거주지 주민센터 방문","소득·재산 조사 신청","약 1개월 심사","매달 통장 입금"],say:'"엄마, 소득이 적으시면 매달 생활비 도움받을 수 있어요. 같이 알아볼까요?"',docs:["신분증","소득 증빙","재산 증빙","통장 사본"],src:"보건복지부",url:"https://www.bokjiro.go.kr/nwelbe/getWelInfoMain.do",badge:["저소득","생활비"],new:false},
+{id:"S-017",t:"장애인연금",cat:"생활비",age:65,desc:"중증장애가 있는 65세 이상 어르신에게 매달 최대 40만 원을 지급해요.",amt:"최대 월 40만원",unit:"/ 한 달",who:"중증장애 만 65세 이상",where:"주민센터",when:"상시",steps:["거주지 주민센터 방문","장애등록증 + 소득 확인","심사 후 결과 통보","매달 통장 입금"],say:'"장애 등록이 되어 있으시면 매달 40만 원까지 받을 수 있어요."',docs:["신분증","장애인등록증","통장 사본"],src:"보건복지부",url:"https://www.bokjiro.go.kr/nwelbe/getWelInfoMain.do",badge:["장애","시니어"],new:false},
 {id:"S-018",t:"경로우대 철도 할인",cat:"교통",age:65,desc:"65세 이상이면 KTX, 새마을호를 30% 할인된 가격으로 이용하실 수 있어요.",amt:"KTX 30% 할인",unit:"",who:"만 65세 이상",where:"코레일 앱 또는 역 창구",when:"상시",steps:["코레일 앱 또는 역 창구에서 예매","<span class='hl'>신분증</span> 제시하면 자동 할인","경로석 우선 배정","무궁화호는 무료 (평일)"],say:'"아빠, 기차표 살 때 신분증 보여주시면 30% 할인받을 수 있어요."',docs:["부모님 신분증"],src:"코레일 · korail.com",url:"https://www.letskorail.com",badge:["시니어","교통"],new:false},
 {id:"S-019",t:"고속버스 경로 할인",cat:"교통",age:65,desc:"65세 이상이면 고속버스 일반석을 30% 할인받으실 수 있어요.",amt:"일반석 30% 할인",unit:"",who:"만 65세 이상",where:"고속버스 터미널 창구",when:"상시",steps:["터미널 창구에서 <span class='hl'>신분증 제시</span>","경로 할인 요청","일반석 30% 할인 적용","온라인 예매 시 할인 미적용 (창구만 가능)"],say:'"엄마, 고속버스 탈 때 창구에서 신분증 보여주시면 30% 할인돼요."',docs:["부모님 신분증"],src:"코버스 · kobus.co.kr",url:"https://www.kobus.co.kr",badge:["시니어","교통"],new:false},
-{id:"S-020",t:"교통약자 복지택시",cat:"교통",age:65,desc:"거동이 불편한 어르신이 저렴하게 택시를 이용하실 수 있어요.",amt:"택시비 50~90% 할인",unit:"",who:"만 65세 이상 거동 불편 어르신",where:"지자체 콜센터",when:"상시 (사전 예약)",steps:["거주지 <span class='hl'>시·군·구청</span>에 이용 등록","이용 전날까지 전화 예약","지정 시간에 픽업","기본요금 1,500~3,000원 수준"],say:'"아빠, 병원 가실 때 복지택시 쓰시면 택시비 거의 안 들어요."',docs:["신분증","장애인등록증 또는 거동불편 확인서"],src:"각 지자체",url:"https://www.bokjiro.go.kr",badge:["교통","거동불편"],new:false},
+{id:"S-020",t:"교통약자 복지택시",cat:"교통",age:65,desc:"거동이 불편한 어르신이 저렴하게 택시를 이용하실 수 있어요.",amt:"택시비 50~90% 할인",unit:"",who:"만 65세 이상 거동 불편 어르신",where:"지자체 콜센터",when:"상시 (사전 예약)",steps:["거주지 <span class='hl'>시·군·구청</span>에 이용 등록","이용 전날까지 전화 예약","지정 시간에 픽업","기본요금 1,500~3,000원 수준"],say:'"아빠, 병원 가실 때 복지택시 쓰시면 택시비 거의 안 들어요."',docs:["신분증","장애인등록증 또는 거동불편 확인서"],src:"각 지자체",url:"https://www.bokjiro.go.kr/nwelbe/getWelInfoMain.do",badge:["교통","거동불편"],new:false},
 {id:"S-021",t:"시니어 인턴십",cat:"일자리",age:60,desc:"60세 이상이 기업에서 일할 수 있도록 정부가 인건비 일부를 지원해요.",amt:"급여 별도 (기업 매칭)",unit:"",who:"만 60세 이상",where:"시니어클럽, 고용센터",when:"수시",steps:["<span class='hl'>시니어클럽</span> 또는 고용센터 방문","희망 분야 상담","기업 매칭 후 근무 시작","정부가 기업에 인건비 일부 지원"],say:'"아빠, 경험 살려서 기업에서 일할 수 있는 프로그램 있어요."',docs:["신분증","이력서"],src:"한국노인인력개발원",url:"https://www.kordi.or.kr",badge:["60세+","일자리"],new:false},
-{id:"S-022",t:"평생교육 무료 수강",cat:"일자리",age:60,desc:"60세 이상이면 스마트폰 활용, 영어회화, 건강체조 등을 무료로 배우실 수 있어요.",amt:"무료",unit:"",who:"만 60세 이상",where:"주민센터, 노인복지관",when:"학기별 모집",steps:["거주지 <span class='hl'>노인복지관 또는 주민센터</span> 문의","원하는 과목 선택","수강 신청","주 1~2회 출석"],say:'"엄마, 스마트폰 배우는 무료 수업 있어요. 같이 알아볼까요?"',docs:["신분증"],src:"각 지자체 평생학습관",url:"https://www.bokjiro.go.kr",badge:["60세+","교육"],new:false},
+{id:"S-022",t:"평생교육 무료 수강",cat:"일자리",age:60,desc:"60세 이상이면 스마트폰 활용, 영어회화, 건강체조 등을 무료로 배우실 수 있어요.",amt:"무료",unit:"",who:"만 60세 이상",where:"주민센터, 노인복지관",when:"학기별 모집",steps:["거주지 <span class='hl'>노인복지관 또는 주민센터</span> 문의","원하는 과목 선택","수강 신청","주 1~2회 출석"],say:'"엄마, 스마트폰 배우는 무료 수업 있어요. 같이 알아볼까요?"',docs:["신분증"],src:"각 지자체 평생학습관",url:"https://www.bokjiro.go.kr/nwelbe/getWelInfoMain.do",badge:["60세+","교육"],new:false},
 {id:"S-023",t:"주야간보호서비스",cat:"돌봄",age:65,desc:"낮 동안 부모님을 돌봐주는 시설에서 식사, 건강관리, 프로그램을 제공해요.",amt:"본인부담 15%",unit:"",who:"장기요양 등급자",where:"주야간보호센터",when:"장기요양 등급 인정 후",steps:["장기요양 등급 먼저 신청 (S-010 참고)","등급 받으면 <span class='hl'>주야간보호센터</span> 선택","주 5일, 오전~오후 이용","식사, 목욕, 운동, 인지활동 제공"],say:'"낮에 혼자 계시기 힘드시면 주간보호센터에서 돌봐드려요. 본인부담은 15%만이에요."',docs:["장기요양 인정서","신분증"],src:"국민건강보험공단",url:"https://www.longtermcare.or.kr",badge:["돌봄","요양"],new:false},
 {id:"S-024",t:"공공실버주택",cat:"주거",age:65,desc:"65세 이상 저소득 어르신이 시세의 30~50%로 입주할 수 있는 공공임대주택이에요.",amt:"시세의 30~50%",unit:"임대료",who:"만 65세 이상 무주택 저소득",where:"LH 또는 지자체",when:"수시 공고",steps:["<span class='hl'>LH 청약센터</span>(apply.lh.or.kr) 공고 확인","신청서 제출","소득·자산 심사","입주 자격 확정 시 계약"],say:'"엄마, 시니어 전용 임대아파트가 있어요. 월세가 시세 절반이래요."',docs:["신분증","소득 증빙","무주택 확인서","통장 사본"],src:"LH · apply.lh.or.kr",url:"https://apply.lh.or.kr",badge:["시니어","주거"],new:false},
 {id:"S-025",t:"근로장려금",cat:"생활비",age:0,desc:"일은 하고 있지만 소득이 적은 가구에 매년 최대 330만 원을 돌려줘요.",amt:"최대 330만원",unit:"/ 1년",who:"저소득 근로자 가구",where:"홈택스 또는 세무서",when:"매년 5월 신청",steps:["<span class='hl'>홈택스</span>(hometax.go.kr) 접속","신청/제출 → 근로·자녀장려금 메뉴","가구 정보 입력 후 제출","9월에 심사 결과 + 입금"],say:'"엄마, 5월 안에 근로장려금 신청하면 가을에 최대 330만 원 받을 수 있어요."',docs:["신분증","소득 증빙"],src:"국세청 · hometax.go.kr",url:"https://www.hometax.go.kr",badge:["5월마감","전연령"],new:false},
-{id:"S-026",t:"통신비 감면",cat:"기타",age:0,desc:"기초생활수급자, 장애인이면 휴대폰 요금을 매달 최대 26,000원 감면받을 수 있어요.",amt:"최대 월 26,000원",unit:"감면",who:"기초수급자·차상위·장애인",where:"통신사 대리점 또는 114",when:"상시",steps:["사용 중인 <span class='hl'>통신사 대리점</span> 방문 또는 114 전화","감면 대상 확인 (수급자증명서 등)","신청서 작성","다음 달부터 요금 감면 적용"],say:'"엄마, 휴대폰 요금 매달 26,000원 깎을 수 있어요. 통신사에 한번 물어볼까요?"',docs:["신분증","수급자증명서 또는 장애인등록증"],src:"과학기술정보통신부",url:"https://www.bokjiro.go.kr",badge:["통신","감면"],new:false},
+{id:"S-026",t:"통신비 감면",cat:"기타",age:0,desc:"기초생활수급자, 장애인이면 휴대폰 요금을 매달 최대 26,000원 감면받을 수 있어요.",amt:"최대 월 26,000원",unit:"감면",who:"기초수급자·차상위·장애인",where:"통신사 대리점 또는 114",when:"상시",steps:["사용 중인 <span class='hl'>통신사 대리점</span> 방문 또는 114 전화","감면 대상 확인 (수급자증명서 등)","신청서 작성","다음 달부터 요금 감면 적용"],say:'"엄마, 휴대폰 요금 매달 26,000원 깎을 수 있어요. 통신사에 한번 물어볼까요?"',docs:["신분증","수급자증명서 또는 장애인등록증"],src:"과학기술정보통신부",url:"https://www.bokjiro.go.kr/nwelbe/getWelInfoMain.do",badge:["통신","감면"],new:false},
 {id:"S-027",t:"무료 법률상담",cat:"기타",age:60,desc:"60세 이상이면 법률 문제를 무료로 상담받으실 수 있어요. 상속, 임대차 분쟁 등.",amt:"무료",unit:"",who:"만 60세 이상 또는 저소득",where:"대한법률구조공단",when:"상시 (예약제)",steps:["<span class='hl'>132</span> 전화 또는 온라인 예약","상담 일시 확정","해당 지부 방문 상담","필요 시 무료 소송 지원 연결"],say:'"아빠, 법률 문제로 고민되시면 무료로 상담받을 수 있어요. 132로 전화해 보세요."',docs:["신분증","관련 서류(계약서, 통보서 등)"],src:"대한법률구조공단 · klac.or.kr",url:"https://www.klac.or.kr",badge:["60세+","무료"],new:false},
-{id:"S-028",t:"노인 안검진·개안수술",cat:"의료",age:60,desc:"60세 이상 저소득 어르신의 눈 검진과 개안수술(백내장 등)을 무료로 지원해요.",amt:"무료",unit:"(수술비 전액)",who:"만 60세 이상 저소득",where:"보건소 또는 지정 안과",when:"상시",steps:["거주지 <span class='hl'>보건소</span>에 문의","대상자 선정 심사","지정 안과에서 검진","수술 필요 시 무료 수술"],say:'"엄마, 눈이 침침하시면 무료 검진 받아보세요. 보건소에서 해줘요."',docs:["신분증","건강보험증","소득 증빙"],src:"보건복지부",url:"https://www.bokjiro.go.kr",badge:["60세+","의료"],new:false},
+{id:"S-028",t:"노인 안검진·개안수술",cat:"의료",age:60,desc:"60세 이상 저소득 어르신의 눈 검진과 개안수술(백내장 등)을 무료로 지원해요.",amt:"무료",unit:"(수술비 전액)",who:"만 60세 이상 저소득",where:"보건소 또는 지정 안과",when:"상시",steps:["거주지 <span class='hl'>보건소</span>에 문의","대상자 선정 심사","지정 안과에서 검진","수술 필요 시 무료 수술"],say:'"엄마, 눈이 침침하시면 무료 검진 받아보세요. 보건소에서 해줘요."',docs:["신분증","건강보험증","소득 증빙"],src:"보건복지부",url:"https://www.bokjiro.go.kr/nwelbe/getWelInfoMain.do",badge:["60세+","의료"],new:false},
 {id:"S-029",t:"자녀장려금",cat:"생활비",age:0,desc:"18세 미만 자녀가 있는 저소득 가구에 자녀 1인당 최대 80만 원을 지급해요.",amt:"자녀 1인당 최대 80만원",unit:"/ 1년",who:"18세 미만 자녀 + 저소득",where:"홈택스",when:"매년 5월 신청",steps:["<span class='hl'>홈택스</span> 접속","근로·자녀장려금 메뉴에서 함께 신청","가구 정보 입력","9월에 입금"],say:'"손주가 있는 부모님이라면, 자녀장려금도 같이 신청해 보세요."',docs:["신분증","소득 증빙"],src:"국세청",url:"https://www.hometax.go.kr",badge:["자녀","5월마감"],new:false},
 {id:"S-030",t:"농어촌 기본소득",cat:"생활비",age:0,desc:"인구감소지역 10개 군에 거주하면 매달 15만 원을 받을 수 있어요.",amt:"월 15만원",unit:"/ 한 달",who:"인구감소지역 거주자",where:"주민센터",when:"상시",steps:["거주지가 대상 지역인지 확인","주민센터 방문 신청","소득·재산 무관","매달 통장 입금"],say:'"시골에 사시는 부모님이라면, 기본소득 신청 가능한지 확인해 보세요."',docs:["신분증","주민등록등본"],src:"행정안전부",url:"https://www.mois.go.kr",badge:["지역","기본소득"],new:true}
 ];
@@ -396,9 +408,15 @@ var html='<article class="card" data-benefit-id="'+d.id+'" onclick="window.locat
 +'<span class="mk">어디서 신청</span><span class="mv">'+d.where+'</span>'
 +'<span class="mk">언제까지</span><span class="mv">'+d.when+'</span></div>'
 +'<div class="act"><div class="act-t">부모님께 도움드리려면</div><ol>'+steps+'</ol></div>'
-+'<div class="par"><div class="par-l">부모님께 이렇게 말씀드려 보세요</div><div class="par-q">'+d.say+'</div></div></div>'
++'<div class="par"><div class="par-l">부모님께 이렇게 말씀드려 보세요</div><div class="par-q">'+d.say+'</div></div>'
++'<div class="detail-panel" id="detail-panel-'+d.id+'"><h4>더 알아야 할 점</h4><p>이 혜택은 '+d.who+'이 대상이며, 신청 전 아래 내용을 확인하시면 더 안정적으로 준비하실 수 있습니다.</p>'
++'<div class="detail-metrics"><div class="detail-metric"><strong>신청 위치</strong><span>'+d.where+'</span></div><div class="detail-metric"><strong>시기</strong><span>'+d.when+'</span></div></div>'
++'<div class="detail-tips"><h5>💡 신청 시 유의사항</h5><ul><li>신청 전 복지로(bokjiro.go.kr)에서 자가진단을 해보세요. 예상 금액을 미리 확인할 수 있어요.</li><li>필요 서류는 미리 준비하세요. 빠진 서류가 있으면 다시 방문해야 할 수 있어요.</li><li>정기적으로 정책이 바뀌니, 신청 전 최신 정보를 확인하세요.</li></ul></div>'
++'<div class="ad">광고 영역 — AdSense 승인 후 활성화됩니다</div>'
++'<div class="detail-action"><a class="apply-now" href="'+d.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">신청하기</a></div>'
++'<button class="detail-close" onclick="toggleDetail(\''+d.id+'\', event)">닫기</button></div>'
 +'<div class="chk"><h4>준비물 체크리스트</h4>'+docs+'</div>'
-+'<div class="card-ft"><a href="'+d.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">자세히 보기 →</a><span class="src">출처: '+d.src+'</span></div></article>';
++'<div class="card-ft"><button class="detail-chip" onclick="toggleDetail(\''+d.id+'\', event);">자세히 보기</button><span class="src">출처: '+d.src+'</span></div></article>';
 list.insertAdjacentHTML("beforeend",html);
 if(shown===8)list.insertAdjacentHTML("beforeend",'<div class="ad">광고 영역 — AdSense 승인 후 활성화됩니다</div>');
 });
@@ -432,10 +450,6 @@ var dh=allDocs.map(function(d){return'<label class="pri"><input type="checkbox">
 pr.innerHTML='<h4>통합 준비물 (중복 제거됨, '+allDocs.length+'개)</h4>'+dh
 +'<div class="prep-where"><strong>가실 곳:</strong> '+allWhere.join(" / ")+'</div>';
 pr.style.display="block";
-}
-
-function handleApply(){
-window.location.href="https://www.bokjiro.go.kr";
 }
 
 function handleHashRoute(){
