@@ -152,8 +152,14 @@ footer{padding:36px 0;border-top:1px solid var(--line);text-align:center}
 .f-links a:hover{color:var(--ink)}
 .f-copy{font-size:11px;color:var(--hint)}
 
+.apply-sticky{position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(93,202,165,.6);backdrop-filter:blur(12px);padding:12px 20px;text-align:center;border-top:1px solid var(--line);transition:background .2s,box-shadow .2s}
+.apply-sticky:hover{background:rgba(93,202,165,.95);box-shadow:0 -8px 24px rgba(93,202,165,.25)}
+.apply-sticky:active{background:var(--mint);transform:scale(.98)}
+.apply-sticky-btn{padding:12px 32px;background:transparent;color:#fff;font-size:15px;font-weight:600;border-radius:var(--radius-sm);transition:all .2s;cursor:pointer;font-family:var(--font-body)}
+.apply-sticky-btn:hover{text-shadow:0 2px 8px rgba(0,0,0,.15)}
+
 .hidden{display:none !important}
-@media(max-width:600px){nav{gap:14px;font-size:12px}.hero{padding:36px 0 28px}.meta{grid-template-columns:80px 1fr}}
+@media(max-width:600px){nav{gap:14px;font-size:12px}.hero{padding:36px 0 28px}.meta{grid-template-columns:80px 1fr}.apply-sticky{padding:10px 16px;bottom:safe-area-inset-bottom}.apply-sticky-btn{padding:10px 24px;font-size:14px}}
 </style>
 </head>
 <body>
@@ -258,6 +264,10 @@ footer{padding:36px 0;border-top:1px solid var(--line);text-align:center}
 <div class="f-links"><a href="#">소개</a><a href="#">문의</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div>
 <div class="f-copy">&copy; 2026 숨은지원금. All rights reserved.</div>
 </div></footer>
+
+<div class="apply-sticky">
+<button class="apply-sticky-btn" onclick="handleApply()">신청하기</button>
+</div>
 
 <script>
 var DATA=[
@@ -415,6 +425,10 @@ var dh=allDocs.map(function(d){return'<label class="pri"><input type="checkbox">
 pr.innerHTML='<h4>통합 준비물 (중복 제거됨, '+allDocs.length+'개)</h4>'+dh
 +'<div class="prep-where"><strong>가실 곳:</strong> '+allWhere.join(" / ")+'</div>';
 pr.style.display="block";
+}
+
+function handleApply(){
+window.location.href="https://www.bokjiro.go.kr";
 }
 
 init();
