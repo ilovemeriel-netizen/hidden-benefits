@@ -158,6 +158,9 @@ footer{padding:36px 0;border-top:1px solid var(--line);text-align:center}
 .apply-sticky-btn{padding:12px 32px;background:transparent;color:#fff;font-size:15px;font-weight:600;border-radius:var(--radius-sm);transition:all .2s;cursor:pointer;font-family:var(--font-body)}
 .apply-sticky-btn:hover{text-shadow:0 2px 8px rgba(0,0,0,.15)}
 
+.card.highlight{animation:pulseHighlight .6s ease-out;}
+@keyframes pulseHighlight{0%{box-shadow:0 0 0 8px rgba(93,202,165,.4),var(--shadow-hover);transform:scale(1.02);}100%{box-shadow:0 0 0 0 rgba(93,202,165,0);transform:scale(1);}}
+
 .hidden{display:none !important}
 @media(max-width:600px){nav{gap:14px;font-size:12px}.hero{padding:36px 0 28px}.meta{grid-template-columns:80px 1fr}.apply-sticky{padding:10px 16px;bottom:safe-area-inset-bottom}.apply-sticky-btn{padding:10px 24px;font-size:14px}}
 </style>
@@ -382,7 +385,7 @@ return'<span class="b '+cls+'">'+b+'</span>';
 }).join("");
 var steps=d.steps.map(function(s){return"<li>"+s+"</li>"}).join("");
 var docs=d.docs.map(function(dc){return'<label class="ci"><input type="checkbox"> '+dc+'</label>'}).join("");
-var html='<article class="card"><div class="card-top"><span class="card-id">'+d.id+'</span><div class="badges">'+badges+'</div></div>'
+var html='<article class="card" data-benefit-id="'+d.id+'" onclick="window.location.hash=\'detail/'+d.id+'\';" style="cursor:pointer"><div class="card-top"><span class="card-id">'+d.id+'</span><div class="badges">'+badges+'</div></div>'
 +'<div class="card-body"><h3 class="card-title">'+d.t+'</h3><p class="card-desc">'+d.desc+'</p>'
 +'<div class="amt"><div class="amt-label">받을 수 있는 금액</div><div class="amt-val">'+d.amt+(d.unit?'<span>'+d.unit+'</span>':'')+'</div></div>'
 +'<div class="meta"><span class="mk">누가 받나요</span><span class="mv">'+d.who+'</span>'
@@ -391,7 +394,7 @@ var html='<article class="card"><div class="card-top"><span class="card-id">'+d.
 +'<div class="act"><div class="act-t">부모님께 도움드리려면</div><ol>'+steps+'</ol></div>'
 +'<div class="par"><div class="par-l">부모님께 이렇게 말씀드려 보세요</div><div class="par-q">'+d.say+'</div></div></div>'
 +'<div class="chk"><h4>준비물 체크리스트</h4>'+docs+'</div>'
-+'<div class="card-ft"><a href="'+d.url+'" target="_blank" rel="noopener">자세히 보기 →</a><span class="src">출처: '+d.src+'</span></div></article>';
++'<div class="card-ft"><a href="'+d.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">자세히 보기 →</a><span class="src">출처: '+d.src+'</span></div></article>';
 list.insertAdjacentHTML("beforeend",html);
 if(shown===8)list.insertAdjacentHTML("beforeend",'<div class="ad">광고 영역 — AdSense 승인 후 활성화됩니다</div>');
 });
@@ -430,6 +433,21 @@ pr.style.display="block";
 function handleApply(){
 window.location.href="https://www.bokjiro.go.kr";
 }
+
+function handleHashRoute(){
+var hash=window.location.hash.substring(1);
+if(!hash){return;}
+var match=hash.match(/^detail\/([A-Z]\-\d{3})$/);
+if(!match){window.location.hash="";return;}
+var benefitId=match[1];
+var benefit=DATA.find(function(d){return d.id===benefitId});
+if(!benefit){window.location.hash="";return;}
+var card=document.querySelector('[data-benefit-id="'+benefitId+'"]');
+if(card){card.scrollIntoView({behavior:"smooth",block:"center"});card.classList.add("highlight");}
+}
+
+window.addEventListener("hashchange",handleHashRoute);
+window.addEventListener("load",function(){handleHashRoute();var cards=document.querySelectorAll(".card");cards.forEach(function(c,i){if(DATA[i]){c.setAttribute("data-benefit-id",DATA[i].id);}});});
 
 init();
 </script>
