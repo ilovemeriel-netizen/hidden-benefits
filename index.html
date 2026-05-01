@@ -27,13 +27,27 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;opacity:0;animation:fadeIn 0.6s ease-out 0.1s forwards}
 a{color:inherit;text-decoration:none}
 button{font:inherit;border:none;background:none;cursor:pointer;color:inherit}
 ::selection{background:var(--mint-bg);color:var(--mint-dark)}
+::placeholder{color:var(--hint)}
 .wrap{max-width:var(--max-w);margin:0 auto;padding:0 20px}
 
-header{padding:16px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(250,250,247,.92);backdrop-filter:blur(12px);z-index:50}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+
+.loading{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:1000;animation:fadeOut 0.5s ease-out 0.8s forwards}
+.loading.show{display:flex}
+.loading.hide{display:none}
+.loading-content{text-align:center}
+.loading-spinner{width:40px;height:40px;border:3px solid var(--line);border-top:3px solid var(--mint);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+.loading-text{color:var(--sub);font-size:14px}
+
+header{padding:16px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(250,250,247,.92);backdrop-filter:blur(12px);z-index:50;animation:slideUp 0.6s ease-out 0.3s both}
 .h-inner{display:flex;justify-content:space-between;align-items:center}
 .logo{font-family:var(--font-display);font-size:17px;font-weight:800;transition:opacity .15s;cursor:pointer}
 .logo:hover{opacity:.75}
@@ -42,8 +56,8 @@ nav{display:flex;gap:20px;font-size:13px;color:var(--sub)}
 nav a{transition:color .15s}
 nav a:hover{color:var(--ink)}
 
-.hero{padding:56px 0 40px;text-align:center}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:var(--mint-bg);color:var(--mint-dark);font-size:12px;font-weight:600;border-radius:20px;margin-bottom:20px}
+.hero{padding:56px 0 40px;text-align:center;animation:slideUp 0.6s ease-out 0.5s both}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:var(--mint-bg);color:var(--mint-dark);font-size:12px;font-weight:600;border-radius:20px;margin-bottom:20px;animation:pulse 2s ease-in-out infinite}
 .hero-dot{width:6px;height:6px;background:var(--mint);border-radius:50%;display:inline-block}
 .hero h1{font-family:var(--font-display);font-size:clamp(26px,5vw,40px);font-weight:800;line-height:1.35;letter-spacing:-.03em;margin-bottom:14px;word-break:keep-all}
 .hero h1 em{font-style:normal;color:var(--mint-mid)}
@@ -183,6 +197,13 @@ footer{padding:36px 0;border-top:1px solid var(--line);text-align:center}
 </head>
 <body>
 
+<div class="loading" id="loading">
+<div class="loading-content">
+<div class="loading-spinner"></div>
+<div class="loading-text">부모님 혜택을 준비하고 있어요...</div>
+</div>
+</div>
+
 <header><div class="wrap h-inner">
 <div class="logo" onclick="window.location.hash='';window.scrollTo(0,0);" style="cursor:pointer">숨은<em>지원금</em></div>
 <nav><a href="#tools">도구</a><a href="#benefits">혜택 목록</a><a href="#faq">자주 묻는 질문</a></nav>
@@ -192,6 +213,22 @@ footer{padding:36px 0;border-top:1px solid var(--line);text-align:center}
 <div class="hero-badge"><span class="hero-dot"></span>2026년 5월 기준 · 시니어 혜택 30종</div>
 <h1>부모님 나이만 알려주세요.<br><em>받으실 혜택을 찾아드릴게요.</em></h1>
 <p>정부 지원금은 신청해야 받을 수 있어요.<br>모르면 0원, 알면 매달 32만 원.<br>부모님 대신 알아보시는 분들을 위해 쉬운 말로 정리했어요.</p>
+
+<div class="hero-stats" style="display:flex;justify-content:center;gap:32px;margin:24px 0 32px;flex-wrap:wrap">
+<div class="stat-item" style="text-align:center">
+<div style="font-size:24px;font-weight:800;color:var(--mint);margin-bottom:4px">30종</div>
+<div style="font-size:12px;color:var(--sub)">시니어 혜택</div>
+</div>
+<div class="stat-item" style="text-align:center">
+<div style="font-size:24px;font-weight:800;color:var(--mint);margin-bottom:4px">32만원</div>
+<div style="font-size:12px;color:var(--sub)">최대 월 지원금</div>
+</div>
+<div class="stat-item" style="text-align:center">
+<div style="font-size:24px;font-weight:800;color:var(--mint);margin-bottom:4px">5분</div>
+<div style="font-size:12px;color:var(--sub)">찾는 시간</div>
+</div>
+</div>
+
 <div class="age-box" id="ageBox">
 <div class="age-label">부모님 연세를 입력해 주세요</div>
 <div class="age-row">
@@ -200,6 +237,11 @@ footer{padding:36px 0;border-top:1px solid var(--line);text-align:center}
 </div>
 <button class="age-btn" onclick="filterByAge()">부모님 맞춤 혜택 보기</button>
 <div class="age-result" id="ageResult"></div>
+</div>
+
+<div style="margin-top:24px;text-align:center">
+<button onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})" style="padding:10px 20px;background:var(--surface);color:var(--sub);font-size:13px;border-radius:var(--radius-sm);margin-right:12px;border:1px solid var(--line)">도구 먼저 보기</button>
+<button onclick="document.getElementById('benefits').scrollIntoView({behavior:'smooth'})" style="padding:10px 20px;background:var(--amber-bg);color:var(--amber-dark);font-size:13px;border-radius:var(--radius-sm);border:1px solid var(--amber-bg)">전체 혜택 목록</button>
 </div>
 </div></section>
 
@@ -504,6 +546,15 @@ window.addEventListener("load",function(){
   cards.forEach(function(c,i){if(DATA[i]){c.setAttribute("data-benefit-id",DATA[i].id);}});
   handleHashRoute();
   if('caches' in window){caches.keys().then(function(n){n.forEach(function(c){caches.delete(c)})});}
+
+  // 로딩 화면 제거
+  setTimeout(function(){
+    var loading = document.getElementById('loading');
+    if(loading){
+      loading.classList.add('hide');
+      setTimeout(function(){loading.style.display='none';}, 500);
+    }
+  }, 800);
 });
 
 init();
